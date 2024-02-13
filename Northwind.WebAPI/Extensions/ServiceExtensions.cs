@@ -2,6 +2,8 @@
 using Northwind.Domain.Repositories;
 using Northwind.Persistence;
 using Northwind.Persistence.Base;
+using Northwind.Service.Abstraction.Base;
+using Northwind.Service.Base;
 
 namespace Northwind.WebAPI.Extensions
 {
@@ -31,5 +33,8 @@ namespace Northwind.WebAPI.Extensions
         //create a service once per request
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
           services.AddScoped<IRepositoryManager, RepositoryManager>();
+
+        public static void ConfigureServiceManager(this IServiceCollection services) =>
+          services.AddScoped<IServiceManager, ServiceManager>();
     }
 }

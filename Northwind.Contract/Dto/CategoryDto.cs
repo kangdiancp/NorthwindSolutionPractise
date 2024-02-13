@@ -14,9 +14,9 @@ namespace Northwind.Contract.Dto
 
         public string? Photo { get; set; }
 
-        public CategoryDetailDto CategoryDetail { get; set; }
+/*        public CategoryDetailDto CategoryDetail { get; set; }
 
-        public IEnumerable<ProductDto> Products { get; set; }
+        public IEnumerable<ProductDto> Products { get; set; }*/
 
     }
 }

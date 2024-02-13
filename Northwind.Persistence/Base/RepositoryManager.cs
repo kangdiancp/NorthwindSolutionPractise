@@ -13,17 +13,17 @@ namespace Northwind.Persistence.Base
     public class RepositoryManager : IRepositoryManager
     {
         private readonly Lazy<IUnitOfWorks> _unitOfWorks;
-        private readonly Lazy<IRepositoryEntityBase<Category>> _categoryRepository;
+        private readonly Lazy<ICategoryRepository> _categoryRepository;
         private readonly Lazy<IRepositoryEntityBase<CategoryDetail>> _categoryDetailRepository;
 
         public RepositoryManager(RepositoryDbContext dbContext)
         {
             _unitOfWorks = new Lazy<IUnitOfWorks>(()=> new UnitOfWorks(dbContext));
-            _categoryRepository = new Lazy<IRepositoryEntityBase<Category>>(()=> new CategoryRepository(dbContext));
+            _categoryRepository = new Lazy<ICategoryRepository>(()=> new CategoryRepository(dbContext));
             _categoryDetailRepository = new Lazy<IRepositoryEntityBase<CategoryDetail>>(() => new CategoryDetailRepository(dbContext));
         }
 
-        public IRepositoryEntityBase<Category> CategoryRepository => _categoryRepository.Value;
+        public ICategoryRepository CategoryRepository => _categoryRepository.Value;
 
         public IRepositoryEntityBase<CategoryDetail> CategoryDetailRepository => _categoryDetailRepository.Value;
 

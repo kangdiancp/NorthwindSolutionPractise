@@ -9,7 +9,7 @@ namespace Northwind.Domain.Repositories
 {
     public interface IRepositoryManager
     {
-        IRepositoryEntityBase<Category> CategoryRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
         IRepositoryEntityBase<CategoryDetail> CategoryDetailRepository { get; }
 
         IUnitOfWorks UnitOfWork { get; }

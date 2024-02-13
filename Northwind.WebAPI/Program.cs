@@ -25,6 +25,8 @@ internal class Program
         builder.Services.AddCors();
         builder.Services.ConfigureDbContext(builder.Configuration);
         builder.Services.ConfigureRepositoryManager();
+        builder.Services.ConfigureServiceManager();
+        builder.Services.AddTransient<GlobalHandlingException>();
 
         var app = builder.Build();
 
@@ -35,6 +37,8 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        app.UseMiddleware<GlobalHandlingException>();
+
         app.UseHttpsRedirection();
 
         // add custome
@@ -44,7 +48,7 @@ internal class Program
         app.UseStaticFiles(new StaticFileOptions()
         {
             FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-            RequestPath = new PathString("/Resources")
+            RequestPath = new PathString("./Resources")
         });
 
 

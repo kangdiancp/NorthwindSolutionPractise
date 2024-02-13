@@ -8,4 +8,14 @@
     <RootNamespace>Northwind.Service</RootNamespace>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Mapster" Version="7.4.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.Contract\Northwind.Contract.csproj" />
+    <ProjectReference Include="..\Northwind.Domain\Northwind.Domain.csproj" />
+    <ProjectReference Include="..\Northwind.Service.Abstraction\Northwind.Service.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>

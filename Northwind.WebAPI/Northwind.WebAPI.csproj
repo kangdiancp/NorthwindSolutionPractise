@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -27,6 +27,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Northwind.Contract\Northwind.Contract.csproj" />
     <ProjectReference Include="..\Northwind.Persistence\Northwind.Persistence.csproj" />
+    <ProjectReference Include="..\Northwind.Service.Abstraction\Northwind.Service.Abstraction.csproj" />
+    <ProjectReference Include="..\Northwind.Service\Northwind.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

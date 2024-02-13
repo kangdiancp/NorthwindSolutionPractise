@@ -8,4 +8,13 @@
     <RootNamespace>Northwind.Service.Abstraction</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Master\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.Contract\Northwind.Contract.csproj" />
+    <ProjectReference Include="..\Northwind.Domain\Northwind.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
