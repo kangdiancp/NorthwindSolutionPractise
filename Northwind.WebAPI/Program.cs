@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Northwind.Persistence;
@@ -15,6 +16,15 @@ internal class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        // configure cache
+        builder.Services.ConfigureResponseCaching();
+        builder.Services.ConfigureHttpCacheHeaders();
+
+        //rate limiting config
+        builder.Services.AddMemoryCache();
+        builder.Services.ConfigureRateLimitingOptions();
+        builder.Services.AddHttpContextAccessor();
 
         //register dbcontext to services
         /*builder.Services.AddDbContext<RepositoryDbContext>(opts =>
@@ -41,6 +51,14 @@ internal class Program
 
         app.UseHttpsRedirection();
 
+        //caching
+        app.UseResponseCaching();
+        app.UseHttpCacheHeaders();
+
+        //ratelimiting & throttling
+        app.UseIpRateLimiting();
+        app.UseRouting();
+
         // add custome
         app.UseStaticFiles();
 
@@ -48,7 +66,7 @@ internal class Program
         app.UseStaticFiles(new StaticFileOptions()
         {
             FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-            RequestPath = new PathString("./Resources")
+            RequestPath = new PathString("/Resources")
         });
 
 

@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Contract.Dto;
 using Northwind.Domain.Entities.Master;
@@ -39,9 +40,15 @@ namespace Northwind.WebAPI.Controllers
 
 
         [HttpGet("{id}")]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 120)]
+        [HttpCacheValidation(MustRevalidate = false)]
         public async Task<ActionResult<CategoryDto>> GetCategoryById(int id)
         {
             var categoryDto = await _serviceManager.CategoryService.GetyByIdAsync(id,false);
+            if(categoryDto == null)
+            {
+                return NotFound();
+            }
             return Ok(categoryDto);
         }
 
